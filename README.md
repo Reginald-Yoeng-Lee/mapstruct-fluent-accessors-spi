@@ -1,0 +1,1 @@
+# mapstruct-fluent-accessors-spi
