@@ -21,3 +21,19 @@ Step 2. Add the dependency
 	    <artifactId>mapstruct-fluent-accessors-spi</artifactId>
 	    <version>1.0.2.</version>
 	</dependency>
+
+
+Step 3. Add new path in AnnotationProcessor
+
+	<annotationProcessorPaths>
+		<path>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </path>
+        <path>
+            <groupId>com.github.nilyin</groupId>
+            <artifactId>mapstruct-fluent-accessors-spi</artifactId>
+            <version>1.0.2</version>
+        </path>
+    </annotationProcessorPaths>
