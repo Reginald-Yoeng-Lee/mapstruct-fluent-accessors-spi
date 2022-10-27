@@ -1,6 +1,6 @@
 # mapstruct-fluent-accessors-spi
 
-# The latest Release : 1.0.2
+# The latest Release : 1.0.3
 
 To get a release this Git project into your Java project build:
 
@@ -19,7 +19,7 @@ Step 2. Add the dependency
 	<dependency>
 	    <groupId>com.github.nilyin</groupId>
 	    <artifactId>mapstruct-fluent-accessors-spi</artifactId>
-	    <version>1.0.2.</version>
+	    <version>1.0.3.</version>
 	</dependency>
 
 
@@ -34,6 +34,6 @@ Step 3. Add new path in AnnotationProcessor
         <path>
             <groupId>com.github.nilyin</groupId>
             <artifactId>mapstruct-fluent-accessors-spi</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </path>
     </annotationProcessorPaths>
