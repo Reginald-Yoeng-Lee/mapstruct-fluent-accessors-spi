@@ -17,7 +17,7 @@ import java.util.List;
         public String getPropertyName(ExecutableElement getterOrSetterMethod) {
 
             String methodName = getterOrSetterMethod.getSimpleName().toString();
-            if ( methodName.startsWith( "is" ) || methodName.startsWith( "get" ) || methodName.startsWith( "set" ) ) {
+            if (methodName.startsWith( "get" ) || methodName.startsWith( "set" ) ) {
                 return super.getPropertyName( getterOrSetterMethod );
             }
             else if (isMyFluentSetter( getterOrSetterMethod ) ) {
