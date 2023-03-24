@@ -1,1 +1,1 @@
-com.github.nilyin.mapstruct_fluent_accessors.spi.CustomAccessorNamingStrategy
+io.github.reginald.mapstructspi.accessors.spi.FluentAccessorNamingStrategy
