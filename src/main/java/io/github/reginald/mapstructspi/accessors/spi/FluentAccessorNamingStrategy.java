@@ -3,6 +3,7 @@ package io.github.reginald.mapstructspi.accessors.spi;
 import org.mapstruct.ap.spi.DefaultAccessorNamingStrategy;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.type.TypeKind;
 import java.util.List;
@@ -32,7 +33,6 @@ public class FluentAccessorNamingStrategy extends DefaultAccessorNamingStrategy 
         return super.isGetterMethod(method) || isFluentGetter(method);
     }
 
-
     /**
      * Checks if the method is a builder getter method. A builder getter method is a method
      * that has exactly zero parameters and the return type of the method is same as the type of the parameter
@@ -41,11 +41,20 @@ public class FluentAccessorNamingStrategy extends DefaultAccessorNamingStrategy 
      * @param getterOrSetterMethod that needs to be checked
      * @return {@code true} if the {@code getterOrSetterMethod} is a builder getter method
      */
-
     protected boolean isFluentGetter(ExecutableElement getterOrSetterMethod) {
         return getterOrSetterMethod.getParameters().isEmpty() &&
                 getterOrSetterMethod.getReturnType().getKind() != TypeKind.VOID &&
-                isSamePropertyNameExist(getterOrSetterMethod);
+                (isEnclosingByInterface(getterOrSetterMethod) || isSamePropertyNameExist(getterOrSetterMethod));
+    }
+
+    /**
+     * Checks if the method is enclosed by an interface (which will never contains any property).
+     *
+     * @param getterOrSetterMethod that needs to be checked
+     * @return {@code true} if the {@code getterOrSetterMethod} is enclosed by an interface
+     */
+    private boolean isEnclosingByInterface(ExecutableElement getterOrSetterMethod) {
+        return getterOrSetterMethod.getEnclosingElement().getKind() == ElementKind.INTERFACE;
     }
 
 
@@ -55,7 +64,7 @@ public class FluentAccessorNamingStrategy extends DefaultAccessorNamingStrategy 
      * exists.
      *
      * @param getterOrSetterMethod that needs to be checked
-     * @return {@code true} if the {@code getterOrSetterMethod} is a builder getter method
+     * @return {@code true} if the {@code getterOrSetterMethod} has a same name property
      */
     private boolean isSamePropertyNameExist(ExecutableElement getterOrSetterMethod) {
         String methodName = getterOrSetterMethod.getSimpleName().toString();
